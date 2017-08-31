@@ -185,6 +185,8 @@ module Alchemy
       "#{element.name}_#{element.id}".html_safe
     end
 
+    delegate(:tag_options, :to => :tag_builder) if Rails.gem_version>=Gem::Version.new('5.1')
+
     # Renders the HTML tag attributes required for preview mode.
     def element_preview_code(element)
       tag_options(element_preview_code_attributes(element))
