@@ -43,3 +43,5 @@ group :production do
   gem 'uglifier', '>= 1.0.3'
   gem 'therubyracer'
 end
+
+gem 'originator', git: 'git@github.com:AlchemyCMS/originator.git', :ref => '14fb1da56bc0c47d871da9c2472c317636b10a0f'
