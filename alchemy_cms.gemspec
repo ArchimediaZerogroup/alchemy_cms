@@ -3,6 +3,17 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'alchemy/version'
 
+rails_version = ENV.fetch("RAILS_VERSION"){ "5.0.0"}
+
+rails = case rails_version
+          when "master"
+            {github: "rails/rails"}
+          when "default"
+            "~> 5.0.0"
+          else
+            "~> #{rails_version}"
+        end
+
 Gem::Specification.new do |gem|
   gem.name                  = 'alchemy_cms'
   gem.version               = Alchemy::VERSION
@@ -33,7 +44,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'kaminari',                         ['~> 0.15']
   gem.add_runtime_dependency 'originator',                       ['~> 3.0']
   gem.add_runtime_dependency 'non-stupid-digest-assets',         ['~> 1.0.8']
-  gem.add_runtime_dependency 'rails',                            ['~> 5.0.0']
+  gem.add_runtime_dependency 'rails',                            [rails]
   gem.add_runtime_dependency 'ransack',                          ['~> 1.4']
   gem.add_runtime_dependency 'request_store',                    ['~> 1.2']
   gem.add_runtime_dependency 'responders',                       ['~> 2.0']
