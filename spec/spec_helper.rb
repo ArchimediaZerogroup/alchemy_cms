@@ -94,6 +94,10 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
+  unless ENV['TRAVIS']
+    config.example_status_persistence_file_path = './spec_run.txt'
+  end
+
   # After each spec the database gets cleaned. (via rollback or truncate for feature specs)
   # After every feature spec the database gets seeded so the next spec can rely on that data.
   config.append_after(:each) do
